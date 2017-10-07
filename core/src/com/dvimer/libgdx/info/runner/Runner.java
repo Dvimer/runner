@@ -53,7 +53,7 @@ public class Runner extends Game {
         stage.draw();
 
         monster.moveBy(-3, 0);
-        if (monster.getPolygon().overlaps(player.getPolygon())) {
+        if (monster.getBounds().overlaps(player.getBounds())) {
             monster.moveBy(40, 0);
             player.getDamage(monster);
             monster.getDamage(player);
