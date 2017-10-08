@@ -5,8 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.dvimer.libgdx.info.utils.MyLabel;
 
@@ -18,31 +18,35 @@ public class Runner extends Game {
     public static final int HIGHT = 640;
     private Stage stage;
     private Player player;
-    private Monster monster;
-    private Texture texture;
+    private Array<Monster> monsters;
+    public static Texture BASE_TEXTURE;
     private SpriteBatch batch;
-    private Charachter character;
-    private MyLabel myLabel;
-
+    private MyLabel character;
 
     @Override
     public void create() {
-        this.texture = new Texture(Gdx.files.internal("tartil.png"));
+        this.BASE_TEXTURE = new Texture(Gdx.files.internal("tartil.png"));
         this.batch = new SpriteBatch();
         this.stage = new Stage(new ScreenViewport(), batch);
 
-        this.character = new Charachter();
+        this.player = new Player(0, 0);
+        this.character = new MyLabel();
         this.stage.addActor(character);
 
-        this.player = new Player(new TextureRegion(texture, 32, 465, 300, 300));
-        this.player.setPosition(0, 0);
+        this.monsters = new Array<Monster>();
+
+        for (int i = 1; i < 5; i++) {
+            monsters.add(new Monster(i * 100, 0));
+        }
+
+        for (Monster monster : monsters) {
+            this.stage.addActor(monster);
+        }
+//        this.monsters = new Monster(400,0);
+//        this.monsters = new Monster(300,0);
+
+
         this.stage.addActor(player);
-
-        this.monster = new Monster(new TextureRegion(texture, 369, 465, 300, 300));
-        this.monster.setPosition(400, 0);
-        this.stage.addActor(monster);
-
-        this.myLabel = new MyLabel(stage);
 
     }
 
@@ -52,16 +56,20 @@ public class Runner extends Game {
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
 
-        monster.moveBy(-3, 0);
-        if (monster.getBounds().overlaps(player.getBounds())) {
-            monster.moveBy(40, 0);
-            player.getDamage(monster);
-            monster.getDamage(player);
-            if (monster.getHp() <= 0) {
-                monster.moveBy(800,0);
-                monster.setHp(100);
+//        monsters.moveBy(-3, 0);
+
+        for (Monster monster : monsters) {
+            if (monster.getBounds().overlaps(player.getBounds())) {
+                monster.moveBy(40, 0);
+                player.getDamage(monster);
+                monster.getDamage(player);
+                if (monster.getHp() <= 0) {
+                    monster.moveBy(800, 0);
+                    monster.setHp(100);
+                }
             }
         }
+
     }
 
 

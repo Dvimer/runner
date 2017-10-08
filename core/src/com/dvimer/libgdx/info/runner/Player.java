@@ -10,8 +10,9 @@ public class Player extends GameObject {
     private int hp;
     private int attack;
 
-    public Player(TextureRegion region) {
-        super(region);
+    public Player(int x, int y) {
+        super(new TextureRegion(Runner.BASE_TEXTURE, 32, 465, 300, 300));
+        this.setPosition(x,y);
         this.hp = 200;
         this.attack = 20;
     }

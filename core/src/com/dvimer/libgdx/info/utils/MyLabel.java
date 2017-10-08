@@ -2,7 +2,9 @@ package com.dvimer.libgdx.info.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
@@ -10,15 +12,11 @@ import com.badlogic.gdx.utils.Align;
 /**
  * Created by dvime_000 on 01.10.2017.
  */
-public class MyLabel {
+public class MyLabel  extends Actor{
 
-    private Stage stage;
-
-    public MyLabel(Stage stage) {
-        this.stage = stage;
-    }
-
-    public void draw() {
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        super.draw(batch, parentAlpha);
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         BitmapFont myFont = new BitmapFont(Gdx.files.internal("font/bitmap.fnt"));
         labelStyle.font = myFont;
@@ -28,7 +26,10 @@ public class MyLabel {
         label1.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getWidth() / 12);
         label1.setPosition(0 , 0);
         label1.setAlignment(Align.center);
-        stage.addActor(label1);
-
     }
+
+//    public void draw() {
+//
+//
+//    }
 }

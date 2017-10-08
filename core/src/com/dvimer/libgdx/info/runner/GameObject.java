@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class GameObject extends Actor {
 
     private TextureRegion region;
-    private Rectangle bounds;
+    protected Rectangle bounds;
 
 
     public GameObject(TextureRegion region) {
