@@ -3,6 +3,7 @@ package com.dvimer.libgdx.info.runner;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 
 /**
@@ -15,7 +16,7 @@ public class Monster extends GameObject {
 
     public Monster(int x, int y) {
         super(new TextureRegion(Runner.BASE_TEXTURE, 369, 465, 300, 300));
-        this.setPosition(x,y);
+        this.setPosition(x, y);
         this.hp = 100;
         this.attack = 10;
     }
@@ -23,15 +24,16 @@ public class Monster extends GameObject {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-//        if (bounds.overlaps(player.getBounds())) {
-//            monster.moveBy(40, 0);
-//            player.getDamage(monster);
-//            monster.getDamage(player);
-//            if (monster.getHp() <= 0) {
-//                monster.moveBy(800,0);
-//                monster.setHp(100);
-//            }
-//        }
+    }
+
+    @Override
+    public void act(float delta) {
+        moveBy(-100 * delta, 0);
+    }
+
+    @Override
+    public Actor hit(float x, float y, boolean touchable) {
+        return super.hit(x, y, touchable);
     }
 
     public void getDamage(Player player) {

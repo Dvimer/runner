@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.dvimer.libgdx.info.utils.MyLabel;
@@ -21,17 +22,40 @@ public class Runner extends Game {
     private Array<Monster> monsters;
     public static Texture BASE_TEXTURE;
     private SpriteBatch batch;
-    private MyLabel character;
+    private MyLabel labelHp;
+    private MyLabel labelMp;
+    private MyLabel countHp;
+    private MyLabel countMp;
 
     @Override
     public void create() {
         this.BASE_TEXTURE = new Texture(Gdx.files.internal("tartil.png"));
+        player = new Player(0, 0);
         this.batch = new SpriteBatch();
         this.stage = new Stage(new ScreenViewport(), batch);
+        this.labelHp = new MyLabel(20, Gdx.graphics.getHeight() - 50, "HP");
+        this.labelMp = new MyLabel(20, Gdx.graphics.getHeight() - 80, "MP");
+        this.countHp = new MyLabel(60, Gdx.graphics.getHeight() - 50, player.getHp());
+        this.countMp = new MyLabel(60, Gdx.graphics.getHeight() - 80, player.getMp());
 
+        gameInit();
+        addStage();
+    }
+
+    private void addStage() {
+        this.stage.addActor(player);
+        for (Monster monster : monsters) {
+            this.stage.addActor(monster);
+        }
+
+        stage.addActor(labelHp.getLabel());
+        stage.addActor(labelMp.getLabel());
+        stage.addActor(countHp.getLabel());
+        stage.addActor(countMp.getLabel());
+    }
+
+    public void gameInit() {
         this.player = new Player(0, 0);
-        this.character = new MyLabel();
-        this.stage.addActor(character);
 
         this.monsters = new Array<Monster>();
 
@@ -39,16 +63,15 @@ public class Runner extends Game {
             monsters.add(new Monster(i * 100, 0));
         }
 
+        MoveToAction moveAction = new MoveToAction();
+        moveAction.setPosition(0f, 0f);
+        moveAction.setDuration(2f);
         for (Monster monster : monsters) {
-            this.stage.addActor(monster);
+            monster.addAction(moveAction);
         }
-//        this.monsters = new Monster(400,0);
-//        this.monsters = new Monster(300,0);
-
-
-        this.stage.addActor(player);
 
     }
+
 
     public void render() {
         Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -56,13 +79,12 @@ public class Runner extends Game {
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
 
-//        monsters.moveBy(-3, 0);
-
         for (Monster monster : monsters) {
             if (monster.getBounds().overlaps(player.getBounds())) {
                 monster.moveBy(40, 0);
                 player.getDamage(monster);
                 monster.getDamage(player);
+                countHp.updateText(player.getHp());
                 if (monster.getHp() <= 0) {
                     monster.moveBy(800, 0);
                     monster.setHp(100);

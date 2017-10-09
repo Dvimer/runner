@@ -8,12 +8,14 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Player extends GameObject {
 
     private int hp;
+    private int mp;
     private int attack;
 
     public Player(int x, int y) {
         super(new TextureRegion(Runner.BASE_TEXTURE, 32, 465, 300, 300));
         this.setPosition(x,y);
         this.hp = 200;
+        this.mp = 100;
         this.attack = 20;
     }
 
@@ -35,5 +37,13 @@ public class Player extends GameObject {
 
     public void setAttack(int attack) {
         this.attack = attack;
+    }
+
+    public int getMp() {
+        return mp;
+    }
+
+    public void setMp(int mp) {
+        this.mp = mp;
     }
 }
