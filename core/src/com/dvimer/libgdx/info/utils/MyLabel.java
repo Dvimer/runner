@@ -8,11 +8,14 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
+import com.dvimer.libgdx.info.runner.publisher.EventListener;
+
+import java.io.File;
 
 /**
  * Created by dvime_000 on 01.10.2017.
  */
-public class MyLabel {
+public class MyLabel implements EventListener {
 
     private CustomLabel label;
 
@@ -34,15 +37,17 @@ public class MyLabel {
         return labelStyle;
     }
 
-    public void updateText(String text) {
+    public CustomLabel getLabel() {
+        return label;
+    }
+
+    @Override
+    public void update(String type, String text) {
         label.updateText(text);
     }
 
-    public void updateText(int text) {
-        label.updateText(text + "");
-    }
-
-    public CustomLabel getLabel() {
-        return label;
+    @Override
+    public void update(String type, int value) {
+        label.updateText(value + "");
     }
 }

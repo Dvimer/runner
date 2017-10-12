@@ -29,7 +29,8 @@ public class Spoil extends GameObject implements Visitor {
 
     @Override
     public void visitPlayer(Player player) {
-        player.addCoin(random.nextInt(100));
+        int coin = random.nextInt(100);
+        player.addCoin(coin);
         moveBy(random.nextInt(300),0);
     }
 }

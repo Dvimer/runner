@@ -48,9 +48,11 @@ public class Runner extends Game {
         this.labelHp = new MyLabel(20, Gdx.graphics.getHeight() - 50, "HP");
         this.labelMp = new MyLabel(20, Gdx.graphics.getHeight() - 80, "MP");
         this.countHp = new MyLabel(60, Gdx.graphics.getHeight() - 50, player.getHp());
-        this.countMp = new MyLabel(60, Gdx.graphics.getHeight() - 80, player.getMp());
+        this.countMp = new MyLabel(60, Gdx.graphics.getHeight() - 80, player.getCoin());
 
         addStage();
+        player.events.subscribe("hp", countHp);
+        player.events.subscribe("coin",countMp);
     }
 
     private void addStage() {
@@ -97,7 +99,6 @@ public class Runner extends Game {
         for (Monster monster : monsters) {
             if (monster.getBounds().overlaps(player.getBounds())) {
                 player.accept(monster);
-                countHp.updateText(player.getHp());
             }
         }
         if (spoil.getBounds().overlaps(player.getBounds())) {

@@ -1,6 +1,7 @@
 package com.dvimer.libgdx.info.runner;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.dvimer.libgdx.info.runner.publisher.EventManager;
 import com.dvimer.libgdx.info.runner.visiter.Visitor;
 
 /**
@@ -8,6 +9,7 @@ import com.dvimer.libgdx.info.runner.visiter.Visitor;
  */
 public class Player extends GameObject {
 
+    public EventManager events;
     private int hp;
     private int mp;
     private int attack;
@@ -20,34 +22,29 @@ public class Player extends GameObject {
         this.mp = 100;
         this.attack = 20;
         this.coin = 0;
+        this.events = new EventManager("hp", "coin");
     }
 
     public void getDamage(int damage) {
         hp -= damage;
+        updateHp();
+
     }
 
     public int getHp() {
         return hp;
     }
 
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
     public int getAttack() {
         return attack;
-    }
-
-    public void setAttack(int attack) {
-        this.attack = attack;
     }
 
     public int getMp() {
         return mp;
     }
 
-    public void setMp(int mp) {
-        this.mp = mp;
+    public int getCoin() {
+        return coin;
     }
 
     public void accept(Visitor visitor) {
@@ -56,6 +53,16 @@ public class Player extends GameObject {
 
     public void addCoin(int coin) {
         this.coin += coin;
-        System.out.println(coin);
+        updateCoin();
     }
+
+    public void updateHp() {
+        events.notify("hp", hp);
+    }
+
+    public void updateCoin() {
+        events.notify("coin", coin);
+    }
+
+
 }

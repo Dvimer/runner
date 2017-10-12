@@ -9,8 +9,4 @@ import com.dvimer.libgdx.info.runner.Spoil;
  */
 public interface Visitor {
     void visitPlayer(Player player);
-
-//    void visitSpoil(Spoil spoil);
-//
-//    void visitMonster(Monster monster);
 }
