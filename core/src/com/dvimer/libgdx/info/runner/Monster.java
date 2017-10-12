@@ -2,14 +2,13 @@ package com.dvimer.libgdx.info.runner;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
+import com.dvimer.libgdx.info.runner.visiter.Visitor;
 
 /**
  * Created by dvime_000 on 02.10.2017.
  */
-public class Monster extends GameObject {
+public class Monster extends GameObject implements Visitor {
 
     private int hp;
     private int attack;
@@ -28,7 +27,7 @@ public class Monster extends GameObject {
 
     @Override
     public void act(float delta) {
-        moveBy(-100 * delta, 0);
+        moveBy(-10 * delta, 0);
     }
 
     @Override
@@ -36,23 +35,18 @@ public class Monster extends GameObject {
         return super.hit(x, y, touchable);
     }
 
-    public void getDamage(Player player) {
-        hp -= player.getAttack();
+    public void getDamage(int damage) {
+        hp -= damage;
     }
 
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
-    public int getAttack() {
-        return attack;
-    }
-
-    public void setAttack(int attack) {
-        this.attack = attack;
+    @Override
+    public void visitPlayer(Player player) {
+        player.getDamage(attack);
+        getDamage(player.getAttack());
+        moveBy(40, 0);
+        if (hp <= 0) {
+            moveBy(800, 0);
+            hp = 100;
+        }
     }
 }

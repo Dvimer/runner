@@ -4,14 +4,18 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.dvimer.libgdx.info.runner.visiter.Visitor;
+
+import java.util.Random;
 
 /**
  * Created by dvime_000 on 07.10.2017.
  */
-public class GameObject extends Actor {
+public abstract class GameObject extends Actor {
 
     private TextureRegion region;
     protected Rectangle bounds;
+    protected Random random;
 
 
     public GameObject(TextureRegion region) {
@@ -19,6 +23,7 @@ public class GameObject extends Actor {
         setSize(region.getRegionWidth() / 3, region.getRegionHeight() / 3);
         setBounds(0, 0, getWidth(), getHeight());
         bounds = new Rectangle((int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
+        this.random = new Random();
     }
 
     @Override
@@ -34,4 +39,6 @@ public class GameObject extends Actor {
     public Rectangle getBounds() {
         return bounds;
     }
+
+
 }
