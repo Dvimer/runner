@@ -3,7 +3,7 @@ package com.dvimer.libgdx.info.runner.publisher;
 /**
  * Created by dvime_000 on 12.10.2017.
  */
-import java.io.File;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

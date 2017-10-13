@@ -1,6 +1,5 @@
 package com.dvimer.libgdx.info.runner;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.dvimer.libgdx.info.runner.visiter.Visitor;
@@ -18,11 +17,6 @@ public class Monster extends GameObject implements Visitor {
         this.setPosition(x, y);
         this.hp = 100;
         this.attack = 10;
-    }
-
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
-        super.draw(batch, parentAlpha);
     }
 
     @Override

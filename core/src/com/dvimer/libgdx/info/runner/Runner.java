@@ -22,7 +22,7 @@ public class Runner extends Game {
     private Stage stage;
     private Player player;
     private Array<Monster> monsters;
-    private Spoil spoil;
+    private Chest spoil;
 
     public static Texture BASE_TEXTURE;
 
@@ -52,7 +52,7 @@ public class Runner extends Game {
 
         addStage();
         player.events.subscribe("hp", countHp);
-        player.events.subscribe("coin",countMp);
+        player.events.subscribe("coin", countMp);
     }
 
     private void addStage() {
@@ -74,19 +74,12 @@ public class Runner extends Game {
         this.monsters = new Array<Monster>();
 
         for (int i = 1; i < 5; i++) {
-            monsters.add(new Monster(i * 100, 70));
-        }
-
-        MoveToAction moveAction = new MoveToAction();
-        moveAction.setPosition(0f, 0f);
-        moveAction.setDuration(2f);
-        for (Monster monster : monsters) {
-            monster.addAction(moveAction);
+            monsters.add(new Monster(i * 200, 70));
         }
 
         this.ground = new Ground(new TextureRegion(textureGround, 0, 0, 200, 200));
 
-        this.spoil = new Spoil(700, 70);
+        this.spoil = new Chest(700, 70);
     }
 
 

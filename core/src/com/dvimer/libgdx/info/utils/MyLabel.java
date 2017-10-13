@@ -2,15 +2,9 @@ package com.dvimer.libgdx.info.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.utils.Align;
 import com.dvimer.libgdx.info.runner.publisher.EventListener;
-
-import java.io.File;
 
 /**
  * Created by dvime_000 on 01.10.2017.
