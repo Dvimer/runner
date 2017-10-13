@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.dvimer.libgdx.info.runner.factory.Labels;
 import com.dvimer.libgdx.info.utils.MyLabel;
 
 /**
@@ -18,22 +19,18 @@ import com.dvimer.libgdx.info.utils.MyLabel;
 public class Runner extends Game {
     public static final int WIDGHT = 800;
     public static final int HIGHT = 640;
+    public static Texture BASE_TEXTURE;
 
     private Stage stage;
+    private SpriteBatch batch;
+
     private Player player;
     private Array<Monster> monsters;
     private Chest spoil;
-
-    public static Texture BASE_TEXTURE;
-
-    private Texture textureGround;
     private Ground ground;
 
-    private SpriteBatch batch;
-    private MyLabel labelHp;
-    private MyLabel labelMp;
-    private MyLabel countHp;
-    private MyLabel countMp;
+    private Texture textureGround;
+    private Labels labels;
 
 
     @Override
@@ -44,15 +41,10 @@ public class Runner extends Game {
         this.stage = new Stage(new ScreenViewport(), batch);
 
         gameInit();
-
-        this.labelHp = new MyLabel(20, Gdx.graphics.getHeight() - 50, "HP");
-        this.labelMp = new MyLabel(20, Gdx.graphics.getHeight() - 80, "MP");
-        this.countHp = new MyLabel(60, Gdx.graphics.getHeight() - 50, player.getHp());
-        this.countMp = new MyLabel(60, Gdx.graphics.getHeight() - 80, player.getCoin());
-
         addStage();
-        player.events.subscribe("hp", countHp);
-        player.events.subscribe("coin", countMp);
+
+        player.events.subscribe("hp", labels.getHpValue());
+        player.events.subscribe("coin", labels.getCointValue());
     }
 
     private void addStage() {
@@ -61,10 +53,7 @@ public class Runner extends Game {
             this.stage.addActor(monster);
         }
 
-        stage.addActor(labelHp.getLabel());
-        stage.addActor(labelMp.getLabel());
-        stage.addActor(countHp.getLabel());
-        stage.addActor(countMp.getLabel());
+        labels.setStage(stage);
         stage.addActor(spoil);
 
     }
@@ -78,8 +67,8 @@ public class Runner extends Game {
         }
 
         this.ground = new Ground(new TextureRegion(textureGround, 0, 0, 200, 200));
-
         this.spoil = new Chest(700, 70);
+        this.labels = new Labels(player);
     }
 
 
@@ -97,8 +86,5 @@ public class Runner extends Game {
         if (spoil.getBounds().overlaps(player.getBounds())) {
             player.accept(spoil);
         }
-
     }
-
-
 }
