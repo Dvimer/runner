@@ -1,6 +1,7 @@
 package com.dvimer.libgdx.info.runner.factory;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.dvimer.libgdx.info.runner.Player;
 import com.dvimer.libgdx.info.utils.MyLabel;
@@ -8,13 +9,14 @@ import com.dvimer.libgdx.info.utils.MyLabel;
 /**
  * Created by dvime_000 on 13.10.2017.
  */
-public class Labels {
+public class Labels extends Group{
 
     private Player player;
     private MyLabel hpTitle;
     private MyLabel mpTitle;
     private MyLabel mpValue;
     private MyLabel hpValue;
+    private MyLabel cointTitle;
     private MyLabel cointValue;
 
     public Labels(Player player) {
@@ -24,10 +26,12 @@ public class Labels {
 
     private void labelInit(Player player) {
         hpTitle = new MyLabel(20, Gdx.graphics.getHeight() - 50, "HP");
-        mpTitle = new MyLabel(60, Gdx.graphics.getHeight() - 50, player.getHp());
-        mpValue = new MyLabel(20, Gdx.graphics.getHeight() - 80, "MP");
-        hpValue = new MyLabel(60, Gdx.graphics.getHeight() - 80, player.getCoin());
-        cointValue = new MyLabel(500, Gdx.graphics.getHeight() - 80, "COIN");
+        hpValue = new MyLabel(60, Gdx.graphics.getHeight() - 50, player.getHp());
+        mpTitle = new MyLabel(20, Gdx.graphics.getHeight() - 80, "MP");
+        mpValue = new MyLabel(60, Gdx.graphics.getHeight() - 80, player.getCoin());
+        cointTitle = new MyLabel(500, Gdx.graphics.getHeight() - 80, "COIN");
+        cointValue = new MyLabel(570, Gdx.graphics.getHeight() - 80, "0");
+        initLable();
     }
 
     public MyLabel getHpTitle() {
@@ -50,11 +54,17 @@ public class Labels {
         return cointValue;
     }
 
-    public void setStage(Stage stage) {
-        stage.addActor(hpTitle.getLabel());
-        stage.addActor(mpTitle.getLabel());
-        stage.addActor(hpValue.getLabel());
-        stage.addActor(mpValue.getLabel());
-        stage.addActor(cointValue.getLabel());
+    public MyLabel getCointTitle() {
+        return cointTitle;
+    }
+
+    private void initLable(){
+
+        addActor(hpTitle.getLabel());
+        addActor(mpTitle.getLabel());
+        addActor(hpValue.getLabel());
+        addActor(mpValue.getLabel());
+        addActor(cointValue.getLabel());
+        addActor(cointTitle.getLabel());
     }
 }

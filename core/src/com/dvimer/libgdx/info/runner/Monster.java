@@ -21,7 +21,7 @@ public class Monster extends GameObject implements Visitor {
 
     @Override
     public void act(float delta) {
-        moveBy(-10 * delta, 0);
+        moveBy(-50 * delta, 0);
     }
 
     @Override
