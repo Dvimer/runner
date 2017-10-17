@@ -7,11 +7,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.dvimer.libgdx.info.runner.factory.Buttons;
+import com.dvimer.libgdx.info.runner.factory.ImageButtons;
 import com.dvimer.libgdx.info.runner.factory.Labels;
 import com.dvimer.libgdx.info.utils.MyButton;
+import com.dvimer.libgdx.info.utils.MyImageButton;
 
 /**
  * Created by dvime_000 on 02.10.2017.
@@ -33,11 +37,11 @@ public class Runner extends Game {
     private Texture textureGround;
     private Labels labels;
 
-    private Buttons buttons;
-
+    private ImageButtons buttons;
 
     @Override
     public void create() {
+
         this.BASE_TEXTURE = new Texture(Gdx.files.internal("tartil.png"));
         this.textureGround = new Texture(Gdx.files.internal("ground.png"));
         this.batch = new SpriteBatch();
@@ -45,9 +49,9 @@ public class Runner extends Game {
 
         Gdx.input.setInputProcessor(stage);
 
-
         gameInit();
         addStage();
+
         player.events.subscribe("hp", labels.getHpValue());
         player.events.subscribe("coin", labels.getCointValue());
     }
@@ -63,7 +67,7 @@ public class Runner extends Game {
         this.ground = new Ground(new TextureRegion(textureGround, 0, 0, 200, 200));
         this.chest = new Chest(700, WIDHT_PLAYER);
         this.labels = new Labels(player);
-        this.buttons = new Buttons();
+        this.buttons = new ImageButtons();
     }
 
     private void addStage() {
