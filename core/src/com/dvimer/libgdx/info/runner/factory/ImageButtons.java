@@ -2,8 +2,9 @@ package com.dvimer.libgdx.info.runner.factory;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.dvimer.libgdx.info.utils.MyButton;
+import com.dvimer.libgdx.info.runner.buttons.*;
 import com.dvimer.libgdx.info.utils.MyImageButton;
 
 /**
@@ -28,21 +29,20 @@ public class ImageButtons extends Group {
     private MyImageButton spell;
 
     public ImageButtons() {
-
-        hpPotion = new MyImageButton(0, WIDGHT_BUTTON, potionRed, potionGreen);
-        mpPotion = new MyImageButton(70, WIDGHT_BUTTON, potionBlue, potionGreen);
-        magic = new MyImageButton(Gdx.graphics.getWidth() / 2 - 40, WIDGHT_BUTTON, scroll);
-        attack = new MyImageButton(580, WIDGHT_BUTTON, sword, upg_sword);
-        spell = new MyImageButton(650, WIDGHT_BUTTON, wand,upg_wand);
+        hpPotion = new MyImageButton(0, WIDGHT_BUTTON, potionRed, potionGreen, new HealEvent());
+        mpPotion = new MyImageButton(70, WIDGHT_BUTTON, potionBlue, potionGreen,new ManaEvent());
+        magic = new MyImageButton(Gdx.graphics.getWidth() / 2 - 40, WIDGHT_BUTTON, scroll, new MagicEvent());
+        attack = new MyImageButton(580, WIDGHT_BUTTON, sword, upg_sword,new AttackEvent());
+        spell = new MyImageButton(650, WIDGHT_BUTTON, wand,upg_wand, new SpellEvent());
         buttonInit();
     }
 
 
     private void buttonInit() {
-        addActor(hpPotion.getButton());
-        addActor(mpPotion.getButton());
-        addActor(magic.getButton());
-        addActor(attack.getButton());
-        addActor(spell.getButton());
+        addActor(hpPotion);
+        addActor(mpPotion);
+        addActor(magic);
+        addActor(attack);
+        addActor(spell);
     }
 }
