@@ -47,6 +47,7 @@ public class Monster extends GameObject implements Visitor {
         if (hp <= 0) {
             moveBy(800, 0);
             hp = 100;
+            player.addCoin(random.nextInt(10));
         }
     }
 }

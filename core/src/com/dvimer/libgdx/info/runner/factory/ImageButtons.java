@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.dvimer.libgdx.info.runner.buttons.*;
+import com.dvimer.libgdx.info.runner.events.*;
 import com.dvimer.libgdx.info.utils.MyImageButton;
 
 /**

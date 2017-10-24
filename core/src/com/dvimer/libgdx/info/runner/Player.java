@@ -93,4 +93,6 @@ public class Player extends GameObject {
         events.subscribe("mp", labels.getMpValue());
         events.subscribe("coin", labels.getCointValue());
     }
+
+
 }

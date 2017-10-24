@@ -18,41 +18,24 @@ import com.dvimer.libgdx.info.runner.factory.Labels;
 public class RunningScreen implements Screen {
 
     private Stage stage;
-    private Runner game;
     private SpriteBatch batch;
 
     private Player player;
-    private Array<Monster> monsters;
-    private Chest chest;
-
-    private Labels labels;
-
-    private ImageButtons buttons;
+    private Runner game;
 
     public RunningScreen(Runner game) {
-        this.game = game;
-        this.player = game.getPlayer();
-        this.monsters = game.getMonsters();
-        this.labels = game.getLabels();
-        this.chest = game.getChest();
-        this.buttons = game.getImageButtons();
-
         this.batch = new SpriteBatch();
         this.stage = new Stage(new ScreenViewport(), batch);
 
-        addStage();
-
-        this.player.addLabels(labels);
-    }
-
-    private void addStage() {
+        this.game = game;
+        this.player = game.getPlayer();
         this.stage.addActor(player);
-        for (Monster monster : monsters) {
+        this.stage.addActor(game.getChest());
+        for (Monster monster : game.getMonsters()) {
             this.stage.addActor(monster);
         }
-        stage.addActor(labels);
-        stage.addActor(chest);
-        stage.addActor(buttons);
+        this.stage.addActor(game.getLabels());
+        this.stage.addActor(game.getImageButtons());
     }
 
     @Override
