@@ -28,9 +28,9 @@ public class Labels extends Group{
         hpTitle = new MyLabel(20, Gdx.graphics.getHeight() - 50, "HP");
         hpValue = new MyLabel(60, Gdx.graphics.getHeight() - 50, player.getHp());
         mpTitle = new MyLabel(20, Gdx.graphics.getHeight() - 80, "MP");
-        mpValue = new MyLabel(60, Gdx.graphics.getHeight() - 80, player.getCoin());
+        mpValue = new MyLabel(60, Gdx.graphics.getHeight() - 80, player.getMp());
         cointTitle = new MyLabel(500, Gdx.graphics.getHeight() - 80, "COIN");
-        cointValue = new MyLabel(570, Gdx.graphics.getHeight() - 80, "0");
+        cointValue = new MyLabel(570, Gdx.graphics.getHeight() - 80, player.getCoin());
         initLable();
     }
 

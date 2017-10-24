@@ -13,7 +13,7 @@ import com.dvimer.libgdx.info.utils.MyImageButton;
 public class ImageButtons extends Group {
     private final static int WIDGHT_BUTTON = 0;
     public final static Texture potionRed = new Texture(Gdx.files.internal("icons/potionRed.png"));
-    public final static Texture potionBlue = new Texture(Gdx.files.internal("icons/potionBlue.png"));
+    public final static Texture potionBlue = new Texture(Gdx.files.internal("stamina.png"));
     public final static Texture potionGreen = new Texture(Gdx.files.internal("icons/potionGreen.png"));
     public final static Texture scroll = new Texture(Gdx.files.internal("icons/scroll.png"));
     public final static Texture sword = new Texture(Gdx.files.internal("icons/sword.png"));
@@ -28,12 +28,12 @@ public class ImageButtons extends Group {
     private MyImageButton attack;
     private MyImageButton spell;
 
-    public ImageButtons() {
-        hpPotion = new MyImageButton(0, WIDGHT_BUTTON, potionRed, potionGreen, new HealEvent());
-        mpPotion = new MyImageButton(70, WIDGHT_BUTTON, potionBlue, potionGreen,new ManaEvent());
+    public ImageButtons(EventListener hpEvent,EventListener mpEvent) {
+        hpPotion = new MyImageButton(0, WIDGHT_BUTTON, potionRed, potionGreen, hpEvent);
+        mpPotion = new MyImageButton(70, WIDGHT_BUTTON, potionBlue, potionGreen, mpEvent);
         magic = new MyImageButton(Gdx.graphics.getWidth() / 2 - 40, WIDGHT_BUTTON, scroll, new MagicEvent());
-        attack = new MyImageButton(580, WIDGHT_BUTTON, sword, upg_sword,new AttackEvent());
-        spell = new MyImageButton(650, WIDGHT_BUTTON, wand,upg_wand, new SpellEvent());
+        attack = new MyImageButton(580, WIDGHT_BUTTON, sword, upg_sword, new AttackEvent());
+        spell = new MyImageButton(650, WIDGHT_BUTTON, wand, upg_wand, new SpellEvent());
         buttonInit();
     }
 
