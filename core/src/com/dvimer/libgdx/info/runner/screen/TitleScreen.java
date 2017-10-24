@@ -16,9 +16,9 @@ import com.dvimer.libgdx.info.runner.Runner;
 public class TitleScreen implements Screen {
 
     private Stage stage;
-    private Game game;
+    private Runner game;
 
-    public TitleScreen(Game aGame) {
+    public TitleScreen(Runner aGame) {
         game = aGame;
         stage = new Stage(new ScreenViewport());
 

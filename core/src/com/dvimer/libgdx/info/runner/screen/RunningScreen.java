@@ -11,10 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.dvimer.libgdx.info.runner.Chest;
-import com.dvimer.libgdx.info.runner.Ground;
-import com.dvimer.libgdx.info.runner.Monster;
-import com.dvimer.libgdx.info.runner.Player;
+import com.dvimer.libgdx.info.runner.*;
 import com.dvimer.libgdx.info.runner.buttons.HealEvent;
 import com.dvimer.libgdx.info.runner.buttons.ManaEvent;
 import com.dvimer.libgdx.info.runner.factory.ImageButtons;
@@ -22,10 +19,9 @@ import com.dvimer.libgdx.info.runner.factory.Labels;
 
 public class RunningScreen implements Screen {
     public static final int WIDHT_PLAYER = 100;
-    public static Texture BASE_TEXTURE;
 
     private Stage stage;
-    private Game game;
+    private Runner game;
     private SpriteBatch batch;
 
     private Player player;
@@ -41,10 +37,9 @@ public class RunningScreen implements Screen {
     private HealEvent healEvent;
     private ManaEvent manaEvent;
 
-    public RunningScreen(Game game) {
+    public RunningScreen(Runner game) {
         this.game = game;
-
-        this.BASE_TEXTURE = new Texture(Gdx.files.internal("tartil.png"));
+        this.player = game.getPlayer();
         this.textureGround = new Texture(Gdx.files.internal("ground.png"));
         this.batch = new SpriteBatch();
         this.stage = new Stage(new ScreenViewport(), batch);
@@ -59,7 +54,7 @@ public class RunningScreen implements Screen {
     }
 
     public void gameInit() {
-        this.player = new Player(0, WIDHT_PLAYER);
+//        this.player = new Player(0, WIDHT_PLAYER);
         this.monsters = new Array<Monster>();
 
         for (int i = 1; i < 5; i++) {
@@ -100,6 +95,7 @@ public class RunningScreen implements Screen {
             if (monster.getBounds().overlaps(player.getBounds())) {
                 player.accept(monster);
                 if (player.isDead()){
+                    player.reset();
                     game.setScreen(new TitleScreen(game));
                 }
             }

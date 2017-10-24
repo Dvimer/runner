@@ -16,12 +16,10 @@ public class Player extends GameObject {
     private int attack;
     private int coin;
     private int maxHp;
-    private boolean isDead;
 
     public Player(int x, int y) {
-        super(new TextureRegion(RunningScreen.BASE_TEXTURE, 32, 465, 300, 300));
+        super(new TextureRegion(Runner.BASE_TEXTURE, 32, 465, 300, 300));
         this.setPosition(x, y);
-        this.isDead = true;
         this.hp = 200;
         this.maxHp = hp;
         this.mp = 100;
@@ -33,11 +31,11 @@ public class Player extends GameObject {
     public void getDamage(int damage) {
         hp -= damage;
         updateHp();
-        checkLive();
     }
 
-    private void checkLive() {
-        isDead = hp <= 0;
+
+    public void reset() {
+        hp = maxHp;
     }
 
     public void accept(Visitor visitor) {
@@ -84,6 +82,6 @@ public class Player extends GameObject {
 
 
     public boolean isDead() {
-        return isDead;
+        return hp <=0;
     }
 }

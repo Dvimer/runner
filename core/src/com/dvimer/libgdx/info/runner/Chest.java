@@ -10,7 +10,7 @@ import com.dvimer.libgdx.info.runner.visiter.Visitor;
 public class Chest extends GameObject implements Visitor {
 
     public Chest(int x, int y) {
-        super(new TextureRegion(RunningScreen.BASE_TEXTURE, 32, 465, 300, 300));
+        super(new TextureRegion(Runner.BASE_TEXTURE, 32, 465, 300, 300));
         setPosition(x, y);
     }
 

@@ -14,7 +14,7 @@ public class Monster extends GameObject implements Visitor {
     private int attack;
 
     public Monster(int x, int y) {
-        super(new TextureRegion(RunningScreen.BASE_TEXTURE, 369, 465, 300, 300));
+        super(new TextureRegion(Runner.BASE_TEXTURE, 369, 465, 300, 300));
         this.setPosition(x, y);
         this.hp = 100;
         this.attack = 10;
