@@ -2,7 +2,6 @@ package com.dvimer.libgdx.info.runner;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.dvimer.libgdx.info.runner.screen.RunningScreen;
 import com.dvimer.libgdx.info.runner.visiter.Visitor;
 
 /**
@@ -10,11 +9,13 @@ import com.dvimer.libgdx.info.runner.visiter.Visitor;
  */
 public class Monster extends GameObject implements Visitor {
 
+    private Player player;
     private int hp;
     private int attack;
 
-    public Monster(int x, int y) {
+    public Monster(int x, int y, Player player) {
         super(new TextureRegion(Runner.BASE_TEXTURE, 369, 465, 300, 300));
+        this.player = player;
         this.setPosition(x, y);
         this.hp = 100;
         this.attack = 10;
@@ -23,6 +24,10 @@ public class Monster extends GameObject implements Visitor {
     @Override
     public void act(float delta) {
         moveBy(-100 * delta, 0);
+        if (getBounds().overlaps(player.getBounds())) {
+            player.visit(this);
+
+        }
     }
 
     @Override

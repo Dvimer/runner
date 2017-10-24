@@ -1,6 +1,7 @@
 package com.dvimer.libgdx.info.runner;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.dvimer.libgdx.info.runner.factory.Labels;
 import com.dvimer.libgdx.info.runner.publisher.EventManager;
 import com.dvimer.libgdx.info.runner.screen.RunningScreen;
 import com.dvimer.libgdx.info.runner.visiter.Visitor;
@@ -10,7 +11,7 @@ import com.dvimer.libgdx.info.runner.visiter.Visitor;
  */
 public class Player extends GameObject {
 
-    public EventManager events;
+    private EventManager events;
     private int hp;
     private int mp;
     private int attack;
@@ -36,9 +37,10 @@ public class Player extends GameObject {
 
     public void reset() {
         hp = maxHp;
+        updateHp();
     }
 
-    public void accept(Visitor visitor) {
+    public void visit(Visitor visitor) {
         visitor.visitPlayer(this);
     }
 
@@ -47,21 +49,10 @@ public class Player extends GameObject {
         updateCoin();
     }
 
-    public void updateHp() {
-        events.notify("hp", hp);
-    }
-
-    public void updateMana() {
-        events.notify("mp", mp);
-    }
 
     public void heal() {
         hp = maxHp;
         updateHp();
-    }
-
-    public void updateCoin() {
-        events.notify("coin", coin);
     }
 
     public int getHp() {
@@ -82,6 +73,24 @@ public class Player extends GameObject {
 
 
     public boolean isDead() {
-        return hp <=0;
+        return hp <= 0;
+    }
+
+    public void updateHp() {
+        events.notify("hp", hp);
+    }
+
+    public void updateMana() {
+        events.notify("mp", mp);
+    }
+
+    public void updateCoin() {
+        events.notify("coin", coin);
+    }
+
+    public void addLabels(Labels labels) {
+        events.subscribe("hp", labels.getHpValue());
+        events.subscribe("mp", labels.getMpValue());
+        events.subscribe("coin", labels.getCointValue());
     }
 }

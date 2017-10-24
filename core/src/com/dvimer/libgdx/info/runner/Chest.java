@@ -1,7 +1,6 @@
 package com.dvimer.libgdx.info.runner;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.dvimer.libgdx.info.runner.screen.RunningScreen;
 import com.dvimer.libgdx.info.runner.visiter.Visitor;
 
 /**
@@ -9,14 +8,22 @@ import com.dvimer.libgdx.info.runner.visiter.Visitor;
  */
 public class Chest extends GameObject implements Visitor {
 
-    public Chest(int x, int y) {
+    private Player player;
+
+    public Chest(Player player, int x, int y) {
         super(new TextureRegion(Runner.BASE_TEXTURE, 32, 465, 300, 300));
+        this.player = player;
         setPosition(x, y);
     }
 
     @Override
     public void act(float delta) {
         moveBy(-200 * delta, 0);
+
+        if (getBounds().overlaps(player.getBounds())) {
+            player.visit(this);
+        }
+
     }
 
     @Override
