@@ -1,6 +1,7 @@
-package com.dvimer.libgdx.info.runner;
+package com.dvimer.libgdx.info.runner.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.dvimer.libgdx.info.runner.Runner;
 import com.dvimer.libgdx.info.runner.visiter.Visitor;
 
 /**

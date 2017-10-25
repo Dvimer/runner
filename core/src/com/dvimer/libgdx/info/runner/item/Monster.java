@@ -1,7 +1,8 @@
-package com.dvimer.libgdx.info.runner;
+package com.dvimer.libgdx.info.runner.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.dvimer.libgdx.info.runner.Runner;
 import com.dvimer.libgdx.info.runner.visiter.Visitor;
 
 /**
@@ -18,7 +19,7 @@ public class Monster extends GameObject implements Visitor {
         this.player = player;
         this.setPosition(x, y);
         this.hp = 100;
-        this.attack = 10;
+        this.attack = 5;
     }
 
     @Override
@@ -41,7 +42,7 @@ public class Monster extends GameObject implements Visitor {
 
     @Override
     public void visitPlayer(Player player) {
-        player.getDamage(attack);
+        player.getDamage(attack + random.nextInt(5));
         getDamage(player.getAttack());
         moveBy(40, 0);
         if (hp <= 0) {

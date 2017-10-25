@@ -1,6 +1,5 @@
 package com.dvimer.libgdx.info.runner.screen;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -21,6 +20,8 @@ public class TitleScreen implements Screen {
     public TitleScreen(Runner aGame) {
         game = aGame;
         stage = new Stage(new ScreenViewport());
+
+        stage.addActor(game.background);
 
         Label title = new Label("Game menu", Runner.gameSkin, "big");
         title.setAlignment(Align.center);

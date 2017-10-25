@@ -2,8 +2,7 @@ package com.dvimer.libgdx.info.runner.factory;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.dvimer.libgdx.info.runner.Player;
+import com.dvimer.libgdx.info.runner.item.Player;
 import com.dvimer.libgdx.info.utils.MyLabel;
 
 /**

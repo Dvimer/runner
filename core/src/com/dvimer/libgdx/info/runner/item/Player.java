@@ -1,9 +1,9 @@
-package com.dvimer.libgdx.info.runner;
+package com.dvimer.libgdx.info.runner.item;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.dvimer.libgdx.info.runner.Runner;
 import com.dvimer.libgdx.info.runner.factory.Labels;
 import com.dvimer.libgdx.info.runner.publisher.EventManager;
-import com.dvimer.libgdx.info.runner.screen.RunningScreen;
 import com.dvimer.libgdx.info.runner.visiter.Visitor;
 
 /**
@@ -12,6 +12,7 @@ import com.dvimer.libgdx.info.runner.visiter.Visitor;
 public class Player extends GameObject {
 
     private EventManager events;
+    private Monster nearMonster;
     private int hp;
     private int mp;
     private int attack;
@@ -48,7 +49,6 @@ public class Player extends GameObject {
         this.coin += coin;
         updateCoin();
     }
-
 
     public void heal() {
         hp = maxHp;
@@ -94,5 +94,13 @@ public class Player extends GameObject {
         events.subscribe("coin", labels.getCointValue());
     }
 
+    public void attackNearMonster() {
+        if (nearMonster != null) {
+            nearMonster.getDamage(attack + random.nextInt(5));
+        }
+    }
 
+    public void setNearMonster(Monster nearMonster) {
+        this.nearMonster = nearMonster;
+    }
 }

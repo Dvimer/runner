@@ -2,7 +2,7 @@ package com.dvimer.libgdx.info.runner.events;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.dvimer.libgdx.info.runner.Player;
+import com.dvimer.libgdx.info.runner.item.Player;
 
 /**
  * Created by dvime_000 on 17.10.2017.

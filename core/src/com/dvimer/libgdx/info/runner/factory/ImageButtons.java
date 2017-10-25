@@ -2,8 +2,8 @@ package com.dvimer.libgdx.info.runner.factory;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.dvimer.libgdx.info.runner.item.Player;
 import com.dvimer.libgdx.info.runner.events.*;
 import com.dvimer.libgdx.info.utils.MyImageButton;
 
@@ -28,11 +28,11 @@ public class ImageButtons extends Group {
     private MyImageButton attack;
     private MyImageButton spell;
 
-    public ImageButtons(EventListener hpEvent,EventListener mpEvent) {
-        hpPotion = new MyImageButton(0, WIDGHT_BUTTON, potionRed, potionGreen, hpEvent);
-        mpPotion = new MyImageButton(70, WIDGHT_BUTTON, potionBlue, potionGreen, mpEvent);
+    public ImageButtons(Player player) {
+        hpPotion = new MyImageButton(0, WIDGHT_BUTTON, potionRed, potionGreen, new HealEvent(player));
+        mpPotion = new MyImageButton(70, WIDGHT_BUTTON, potionBlue, potionGreen, new ManaEvent(player));
         magic = new MyImageButton(Gdx.graphics.getWidth() / 2 - 40, WIDGHT_BUTTON, scroll, new MagicEvent());
-        attack = new MyImageButton(580, WIDGHT_BUTTON, sword, upg_sword, new AttackEvent());
+        attack = new MyImageButton(580, WIDGHT_BUTTON, sword, upg_sword, new AttackEvent(player));
         spell = new MyImageButton(650, WIDGHT_BUTTON, wand, upg_wand, new SpellEvent());
         buttonInit();
     }

@@ -6,21 +6,16 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.dvimer.libgdx.info.runner.Chest;
-import com.dvimer.libgdx.info.runner.Monster;
-import com.dvimer.libgdx.info.runner.Player;
-import com.dvimer.libgdx.info.runner.Runner;
-import com.dvimer.libgdx.info.runner.factory.ImageButtons;
-import com.dvimer.libgdx.info.runner.factory.Labels;
+import com.dvimer.libgdx.info.runner.*;
+import com.dvimer.libgdx.info.runner.item.Ground;
+import com.dvimer.libgdx.info.runner.item.Monster;
 
 public class RunningScreen implements Screen {
 
     private Stage stage;
     private SpriteBatch batch;
 
-    private Player player;
     private Runner game;
 
     public RunningScreen(Runner game) {
@@ -28,14 +23,19 @@ public class RunningScreen implements Screen {
         this.stage = new Stage(new ScreenViewport(), batch);
 
         this.game = game;
-        this.player = game.getPlayer();
-        this.stage.addActor(player);
-        this.stage.addActor(game.getChest());
-        for (Monster monster : game.getMonsters()) {
+        this.stage.addActor(game.background);
+        for (Ground groung : game.grounds){
+            this.stage.addActor(groung);
+        }
+
+        this.stage.addActor(game.player);
+        this.stage.addActor(game.chest);
+        for (Monster monster : game.monsters) {
             this.stage.addActor(monster);
         }
-        this.stage.addActor(game.getLabels());
-        this.stage.addActor(game.getImageButtons());
+        this.stage.addActor(game.labels);
+        this.stage.addActor(game.imageButtons);
+
     }
 
     @Override
@@ -50,8 +50,8 @@ public class RunningScreen implements Screen {
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
 
-        if (player.isDead()) {
-            player.reset();
+        if (game.player.isDead()) {
+            game.player.reset();
             game.setScreen(new TitleScreen(game));
         }
     }

@@ -1,4 +1,4 @@
-package com.dvimer.libgdx.info.runner;
+package com.dvimer.libgdx.info.runner.item;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
