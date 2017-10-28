@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.dvimer.libgdx.info.runner.*;
+import com.dvimer.libgdx.info.runner.item.Wood;
 import com.dvimer.libgdx.info.runner.item.Ground;
 import com.dvimer.libgdx.info.runner.item.Monster;
 
@@ -24,8 +25,13 @@ public class RunningScreen implements Screen {
 
         this.game = game;
         this.stage.addActor(game.background);
+
         for (Ground groung : game.grounds){
             this.stage.addActor(groung);
+        }
+
+        for (Wood wood : game.derevos) {
+            this.stage.addActor(wood);
         }
 
         this.stage.addActor(game.player);

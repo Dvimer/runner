@@ -22,7 +22,7 @@ public abstract class GameObject extends Actor {
 
     public GameObject(TextureRegion region) {
         this.region = region;
-        setSize(region.getRegionWidth() / 3, region.getRegionHeight() / 3);
+        setSize(region.getRegionWidth(), region.getRegionHeight());
         setBounds(0, 0, getWidth(), getHeight());
         bounds = new Rectangle((int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
         this.random = new Random();
@@ -41,7 +41,6 @@ public abstract class GameObject extends Actor {
     public Rectangle getBounds() {
         return bounds;
     }
-
 
 
 }

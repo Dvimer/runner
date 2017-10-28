@@ -1,5 +1,8 @@
 package com.dvimer.libgdx.info.runner.item;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.dvimer.libgdx.info.runner.Runner;
 import com.dvimer.libgdx.info.runner.factory.Labels;
@@ -20,7 +23,7 @@ public class Player extends GameObject {
     private int maxHp;
 
     public Player(int x, int y) {
-        super(new TextureRegion(Runner.BASE_TEXTURE, 32, 465, 300, 300));
+        super(new TextureRegion(new Texture(Gdx.files.internal("player.png"))));
         this.setPosition(x, y);
         this.hp = 200;
         this.maxHp = hp;

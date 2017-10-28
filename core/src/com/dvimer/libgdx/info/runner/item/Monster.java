@@ -1,5 +1,7 @@
 package com.dvimer.libgdx.info.runner.item;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.dvimer.libgdx.info.runner.Runner;
@@ -15,7 +17,7 @@ public class Monster extends GameObject implements Visitor {
     private int attack;
 
     public Monster(int x, int y, Player player) {
-        super(new TextureRegion(Runner.BASE_TEXTURE, 369, 465, 300, 300));
+        super(new TextureRegion(new Texture(Gdx.files.internal("greenMonster.png"))));
         this.player = player;
         this.setPosition(x, y);
         this.hp = 100;

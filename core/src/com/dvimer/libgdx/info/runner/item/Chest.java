@@ -1,5 +1,7 @@
 package com.dvimer.libgdx.info.runner.item;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.dvimer.libgdx.info.runner.Runner;
 import com.dvimer.libgdx.info.runner.visiter.Visitor;
@@ -12,7 +14,7 @@ public class Chest extends GameObject implements Visitor {
     private Player player;
 
     public Chest(Player player, int x, int y) {
-        super(new TextureRegion(Runner.BASE_TEXTURE, 32, 465, 300, 300));
+        super(new TextureRegion(new Texture(Gdx.files.internal("chest.png"))));
         this.player = player;
         setPosition(x, y);
     }
