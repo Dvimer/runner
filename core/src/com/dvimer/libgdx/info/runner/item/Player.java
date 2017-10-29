@@ -16,10 +16,11 @@ public class Player extends GameObject {
     private EventManager events;
     private Array<Monster> monsters;
     private int hp;
-    private int mp;
+    private float mp;
     private int attack;
     private int coin;
     private int maxHp;
+    private int maxMp;
 
     public Player(int x, int y) {
         super(new TextureRegion(new Texture(Gdx.files.internal("player.png"))));
@@ -27,6 +28,7 @@ public class Player extends GameObject {
         this.hp = 200;
         this.maxHp = hp;
         this.mp = 100;
+        this.maxMp = (int) mp;
         this.attack = 20 + random.nextInt(10);
         this.coin = 0;
         this.events = new EventManager("hp", "coin", "mp");
@@ -35,8 +37,16 @@ public class Player extends GameObject {
 
     @Override
     public void act(float delta) {
-        super.act(delta);
+        regenMaxMana(delta);
+    }
 
+
+
+    public void regenMaxMana(float delta) {
+        if (mp < maxMp) {
+            mp += 1 * delta;
+            updateMana();
+        }
     }
 
     public void getDamage(int damage) {
@@ -55,12 +65,12 @@ public class Player extends GameObject {
         updateCoin();
     }
 
-    public void manaCast(int mana){
-        this.mp -=mana;
+    public void manaCast(int mana) {
+        this.mp -= mana;
         updateMana();
     }
 
-    public void regenMana(){
+    public void regenMaxMana() {
         this.mp = 100;
         updateMana();
     }
@@ -79,7 +89,7 @@ public class Player extends GameObject {
     }
 
     public int getMp() {
-        return mp;
+        return (int) mp;
     }
 
     public int getCoin() {
@@ -96,7 +106,7 @@ public class Player extends GameObject {
     }
 
     public void updateMana() {
-        events.notify("mp", mp);
+        events.notify("mp", (int) mp);
     }
 
     public void updateCoin() {
@@ -106,7 +116,7 @@ public class Player extends GameObject {
     public void addLabels(Labels labels) {
         events.subscribe("hp", labels.getHpValue());
         events.subscribe("mp", labels.getMpValue());
-        events.subscribe("coin", labels.getCointValue());
+        events.subscribe("coin", labels.getCoinValue());
     }
 
     public void setMonsters(Array<Monster> monsters) {
@@ -115,7 +125,7 @@ public class Player extends GameObject {
 
     public void attackMonsters() {
         for (Monster monster : monsters) {
-            if (monster.getX() < getX() + getWidth() + 500) {
+            if (monster.getX() < getX() + getWidth() + 100) {
                 monster.visitPlayer(this, MOVE_X);
             } else {
                 System.out.println("Пичль");
@@ -128,7 +138,7 @@ public class Player extends GameObject {
             if (monster.getX() < getX() + getWidth() + 1000) {
                 if (mp > 40) {
                     monster.visitPlayer(this, 0);
-                   manaCast(40);
+                    manaCast(40);
                     break;
                 }
             }

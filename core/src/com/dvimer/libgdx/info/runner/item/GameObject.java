@@ -1,13 +1,11 @@
 package com.dvimer.libgdx.info.runner.item;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.dvimer.libgdx.info.runner.visiter.Visitor;
 
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -42,5 +40,7 @@ public abstract class GameObject extends Actor {
         return bounds;
     }
 
-
+    public Texture getTexture(){
+        return region.getTexture();
+    }
 }

@@ -51,7 +51,7 @@ public class TitleScreen implements Screen {
         optionsButton.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-//                game.setScreen(new OptionScreen(game));
+                game.setScreen(new TestScreen(game));
             }
 
             @Override

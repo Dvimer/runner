@@ -34,7 +34,7 @@ public class Runner extends Game {
         this.labels = new Labels(player);
 
         this.monsters = new Array<Monster>();
-        for (int i = 1; i < 2; i++) {
+        for (int i = 1; i < 5; i++) {
             monsters.add(new Monster(i * 200, WIDHT_PLAYER, player,"Monster" + i));
         }
 

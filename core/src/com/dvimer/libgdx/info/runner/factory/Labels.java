@@ -10,16 +10,14 @@ import com.dvimer.libgdx.info.utils.MyLabel;
  */
 public class Labels extends Group{
 
-    private Player player;
     private MyLabel hpTitle;
     private MyLabel mpTitle;
     private MyLabel mpValue;
     private MyLabel hpValue;
-    private MyLabel cointTitle;
-    private MyLabel cointValue;
+    private MyLabel coinTitle;
+    private MyLabel coinValue;
 
     public Labels(Player player) {
-        this.player = player;
         labelInit(player);
     }
 
@@ -28,17 +26,9 @@ public class Labels extends Group{
         hpValue = new MyLabel(60, Gdx.graphics.getHeight() - 50, player.getHp());
         mpTitle = new MyLabel(20, Gdx.graphics.getHeight() - 80, "MP");
         mpValue = new MyLabel(60, Gdx.graphics.getHeight() - 80, player.getMp());
-        cointTitle = new MyLabel(500, Gdx.graphics.getHeight() - 80, "COIN");
-        cointValue = new MyLabel(570, Gdx.graphics.getHeight() - 80, player.getCoin());
+        coinTitle = new MyLabel(500, Gdx.graphics.getHeight() - 80, "COIN");
+        coinValue = new MyLabel(570, Gdx.graphics.getHeight() - 80, player.getCoin());
         initLable();
-    }
-
-    public MyLabel getHpTitle() {
-        return hpTitle;
-    }
-
-    public MyLabel getMpTitle() {
-        return mpTitle;
     }
 
     public MyLabel getMpValue() {
@@ -49,12 +39,8 @@ public class Labels extends Group{
         return hpValue;
     }
 
-    public MyLabel getCointValue() {
-        return cointValue;
-    }
-
-    public MyLabel getCointTitle() {
-        return cointTitle;
+    public MyLabel getCoinValue() {
+        return coinValue;
     }
 
     private void initLable(){
@@ -63,7 +49,7 @@ public class Labels extends Group{
         addActor(mpTitle.getLabel());
         addActor(hpValue.getLabel());
         addActor(mpValue.getLabel());
-        addActor(cointValue.getLabel());
-        addActor(cointTitle.getLabel());
+        addActor(coinValue.getLabel());
+        addActor(coinTitle.getLabel());
     }
 }

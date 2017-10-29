@@ -3,6 +3,8 @@ package com.dvimer.libgdx.info.runner.item;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.dvimer.libgdx.info.runner.events.AttackEvent;
 
 /**
  * Created by dvime_000 on 02.10.2017.
@@ -21,6 +23,9 @@ public class Monster extends GameObject {
         this.hp = 100;
         this.attack = 5;
         this.name = name;
+        setTouchable(Touchable.enabled);
+        addListener(new AttackEvent(player));
+
     }
 
     @Override
