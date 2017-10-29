@@ -31,9 +31,9 @@ public class ImageButtons extends Group {
     public ImageButtons(Player player) {
         hpPotion = new MyImageButton(0, WIDGHT_BUTTON, potionRed, potionGreen, new HealEvent(player));
         mpPotion = new MyImageButton(70, WIDGHT_BUTTON, potionBlue, potionGreen, new ManaEvent(player));
-        magic = new MyImageButton(Gdx.graphics.getWidth() / 2 - 40, WIDGHT_BUTTON, scroll, new MagicEvent());
+        magic = new MyImageButton(Gdx.graphics.getWidth() / 2 - 40, WIDGHT_BUTTON, scroll, new SpellEvent());
         attack = new MyImageButton(580, WIDGHT_BUTTON, sword, upg_sword, new AttackEvent(player));
-        spell = new MyImageButton(650, WIDGHT_BUTTON, wand, upg_wand, new SpellEvent());
+        spell = new MyImageButton(650, WIDGHT_BUTTON, wand, upg_wand, new MagicEvent(player));
         buttonInit();
     }
 

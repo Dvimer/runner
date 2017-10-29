@@ -32,18 +32,22 @@ public class Runner extends Game {
         this.background = new Background();
         this.player = new Player(0, WIDHT_PLAYER);
         this.labels = new Labels(player);
-        this.player.addLabels(labels);
 
         this.monsters = new Array<Monster>();
-        for (int i = 1; i < 5; i++) {
-            monsters.add(new Monster(i * 200, WIDHT_PLAYER, player));
+        for (int i = 1; i < 2; i++) {
+            monsters.add(new Monster(i * 200, WIDHT_PLAYER, player,"Monster" + i));
         }
+
+        this.player.addLabels(labels);
+        this.player.setMonsters(monsters);
+
+
         this.chest = new Chest(player, 700, WIDHT_PLAYER);
         imageButtons = new ImageButtons(player);
 
         this.derevos = new Array<Wood>();
         for (int i = 0; i < 5; i++) {
-            derevos.add(new Wood(200*i,WIDHT_PLAYER));
+            derevos.add(new Wood(200 * i, WIDHT_PLAYER));
         }
 
         this.grounds = new Array<Ground>();

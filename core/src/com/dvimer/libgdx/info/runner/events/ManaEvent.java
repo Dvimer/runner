@@ -17,7 +17,7 @@ public class ManaEvent extends ClickListener {
     @Override
     public void clicked(InputEvent event, float x, float y) {
         super.clicked(event, x, y);
-        player.updateMana();
+        player.regenMana();
     }
 
 }

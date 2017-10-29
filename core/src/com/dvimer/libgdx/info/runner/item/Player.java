@@ -1,21 +1,20 @@
 package com.dvimer.libgdx.info.runner.item;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.dvimer.libgdx.info.runner.Runner;
+import com.badlogic.gdx.utils.Array;
 import com.dvimer.libgdx.info.runner.factory.Labels;
 import com.dvimer.libgdx.info.runner.publisher.EventManager;
-import com.dvimer.libgdx.info.runner.visiter.Visitor;
 
 /**
  * Created by dvime_000 on 02.10.2017.
  */
 public class Player extends GameObject {
 
+    public static final int MOVE_X = 20;
     private EventManager events;
-    private Monster nearMonster;
+    private Array<Monster> monsters;
     private int hp;
     private int mp;
     private int attack;
@@ -28,9 +27,16 @@ public class Player extends GameObject {
         this.hp = 200;
         this.maxHp = hp;
         this.mp = 100;
-        this.attack = 20;
+        this.attack = 20 + random.nextInt(10);
         this.coin = 0;
         this.events = new EventManager("hp", "coin", "mp");
+    }
+
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+
     }
 
     public void getDamage(int damage) {
@@ -44,13 +50,19 @@ public class Player extends GameObject {
         updateHp();
     }
 
-    public void visit(Visitor visitor) {
-        visitor.visitPlayer(this);
-    }
-
     public void addCoin(int coin) {
         this.coin += coin;
         updateCoin();
+    }
+
+    public void manaCast(int mana){
+        this.mp -=mana;
+        updateMana();
+    }
+
+    public void regenMana(){
+        this.mp = 100;
+        updateMana();
     }
 
     public void heal() {
@@ -97,13 +109,30 @@ public class Player extends GameObject {
         events.subscribe("coin", labels.getCointValue());
     }
 
-    public void attackNearMonster() {
-        if (nearMonster != null) {
-            nearMonster.getDamage(attack + random.nextInt(5));
+    public void setMonsters(Array<Monster> monsters) {
+        this.monsters = monsters;
+    }
+
+    public void attackMonsters() {
+        for (Monster monster : monsters) {
+            if (monster.getX() < getX() + getWidth() + 500) {
+                monster.visitPlayer(this, MOVE_X);
+            } else {
+                System.out.println("Пичль");
+            }
         }
     }
 
-    public void setNearMonster(Monster nearMonster) {
-        this.nearMonster = nearMonster;
+    public void magicDamageMonsters() {
+        for (Monster monster : monsters) {
+            if (monster.getX() < getX() + getWidth() + 1000) {
+                if (mp > 40) {
+                    monster.visitPlayer(this, 0);
+                   manaCast(40);
+                    break;
+                }
+            }
+        }
     }
+
 }
