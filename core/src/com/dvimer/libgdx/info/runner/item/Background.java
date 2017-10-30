@@ -7,11 +7,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 /**
  * Created by dvime_000 on 25.10.2017.
  */
-public class Background extends GameObject{
+public class Background extends GameObject {
 
     public Background() {
-        super(new TextureRegion(new Texture(Gdx.files.internal("background.png"))));
-        setPosition(0,0);
-        setSize(getWidth()*5,getHeight()*5);
+        super(new TextureRegion(new Texture(Gdx.files.internal("background.png"))), 0, 0);
+        setSize(getWidth() * 5, getHeight() * 5);
     }
 }

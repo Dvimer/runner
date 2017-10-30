@@ -11,8 +11,7 @@ import com.dvimer.libgdx.info.runner.Runner;
 public class Wood extends GameObject {
 
     public Wood(int x, int y) {
-        super(new TextureRegion(new Texture(Gdx.files.internal("derevo.png"))));
-        setPosition(x,y);
+        super(new TextureRegion(new Texture(Gdx.files.internal("derevo.png"))),x,y);
     }
 
     @Override

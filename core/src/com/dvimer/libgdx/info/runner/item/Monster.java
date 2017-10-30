@@ -21,9 +21,8 @@ public class Monster extends GameObject {
     private int attack;
 
     public Monster(int x, int y, Player player, String name) {
-        super(new TextureRegion(new Texture(Gdx.files.internal("greenMonster.png"))));
+        super(new TextureRegion(new Texture(Gdx.files.internal("greenMonster.png"))),x,y);
         this.player = player;
-        this.setPosition(x, y);
         this.hp = 100;
         this.attack = 5;
         this.name = name;
@@ -43,7 +42,7 @@ public class Monster extends GameObject {
 
     public void getDamage(int damage) {
         hp -= damage;
-        MyLabel label = new MyLabel(0, 500, "-" +damage);
+        MyLabel label = new MyLabel(0, 500, "-" + damage);
 
         getStage().addActor(label.getLabel());
 //        for (Actor actor : getStage().getActors()) {

@@ -12,9 +12,8 @@ public class Chest extends GameObject {
     private Player player;
 
     public Chest(Player player, int x, int y) {
-        super(new TextureRegion(new Texture(Gdx.files.internal("chest.png"))));
+        super(new TextureRegion(new Texture(Gdx.files.internal("chest.png"))), x, y);
         this.player = player;
-        setPosition(x, y);
     }
 
     @Override

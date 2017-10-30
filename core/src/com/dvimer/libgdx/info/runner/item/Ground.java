@@ -10,8 +10,7 @@ import com.dvimer.libgdx.info.runner.Runner;
 public class Ground extends GameObject {
 
     public Ground(int x, int y) {
-        super(new TextureRegion(new Texture("ground.png")));
-        setPosition(x,y);
+        super(new TextureRegion(new Texture("ground.png")),x,y);
     }
 
     @Override

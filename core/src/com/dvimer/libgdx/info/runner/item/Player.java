@@ -23,8 +23,7 @@ public class Player extends GameObject {
     private int maxMp;
 
     public Player(int x, int y) {
-        super(new TextureRegion(new Texture(Gdx.files.internal("player.png"))));
-        this.setPosition(x, y);
+        super(new TextureRegion(new Texture(Gdx.files.internal("player.png"))),x,y);
         this.hp = 200;
         this.maxHp = hp;
         this.mp = 100;

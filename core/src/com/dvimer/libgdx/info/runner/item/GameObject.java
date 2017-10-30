@@ -18,14 +18,13 @@ public abstract class GameObject extends Actor {
     protected Random random;
 
 
-    public GameObject(TextureRegion region) {
+    public GameObject(TextureRegion region, int x, int y) {
         this.region = region;
         setSize(region.getRegionWidth(), region.getRegionHeight());
-        setBounds(getX(), getY(), getWidth(), getHeight());
         setOrigin(getWidth() / 2, getHeight() / 2);
-        bounds = new Rectangle((int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
+        bounds = new Rectangle(x, y, (int) getWidth(), (int) getHeight());
+        setPosition(x, y);
 
-        updatePositon();
         this.random = new Random();
     }
 
