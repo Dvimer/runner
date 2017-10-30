@@ -1,10 +1,11 @@
-package com.dvimer.libgdx.info.utils;
+package com.dvimer.libgdx.info.runner.factory;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.dvimer.libgdx.info.runner.publisher.EventListener;
+import com.dvimer.libgdx.info.utils.CustomLabel;
 
 /**
  * Created by dvime_000 on 01.10.2017.

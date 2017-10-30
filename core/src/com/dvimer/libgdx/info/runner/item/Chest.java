@@ -19,6 +19,7 @@ public class Chest extends GameObject {
 
     @Override
     public void act(float delta) {
+        super.act(delta);
         moveBy(-200 * delta, 0);
 
         if (getBounds().overlaps(player.getBounds())) {

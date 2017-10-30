@@ -37,6 +37,7 @@ public class Player extends GameObject {
 
     @Override
     public void act(float delta) {
+        super.act(delta);
         regenMaxMana(delta);
     }
 

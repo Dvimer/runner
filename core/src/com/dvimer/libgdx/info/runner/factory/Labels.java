@@ -3,7 +3,6 @@ package com.dvimer.libgdx.info.runner.factory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.dvimer.libgdx.info.runner.item.Player;
-import com.dvimer.libgdx.info.utils.MyLabel;
 
 /**
  * Created by dvime_000 on 13.10.2017.
