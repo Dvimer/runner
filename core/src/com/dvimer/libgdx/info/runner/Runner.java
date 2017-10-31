@@ -29,6 +29,7 @@ public class Runner extends Game {
 
     @Override
     public void create() {
+        gameSkin = new Skin(Gdx.files.internal("skin/comic/skin/comic-ui.json"));
         this.background = new Background();
         this.player = new Player(0, WIDHT_PLAYER);
         this.labels = new Labels(player);
@@ -55,7 +56,6 @@ public class Runner extends Game {
             grounds.add(new Ground(256 * i, 0));
         }
 
-        gameSkin = new Skin(Gdx.files.internal("skin/comic/skin/comic-ui.json"));
         this.setScreen(new TitleScreen(this));
     }
 

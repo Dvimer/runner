@@ -7,7 +7,7 @@ import com.dvimer.libgdx.info.runner.item.Player;
 /**
  * Created by dvime_000 on 13.10.2017.
  */
-public class Labels extends Group{
+public class Labels extends Group {
 
     private MyLabel hpTitle;
     private MyLabel mpTitle;
@@ -21,12 +21,12 @@ public class Labels extends Group{
     }
 
     private void labelInit(Player player) {
-        hpTitle = new MyLabel(20, Gdx.graphics.getHeight() - 50, "HP");
-        hpValue = new MyLabel(60, Gdx.graphics.getHeight() - 50, player.getHp());
-        mpTitle = new MyLabel(20, Gdx.graphics.getHeight() - 80, "MP");
-        mpValue = new MyLabel(60, Gdx.graphics.getHeight() - 80, player.getMp());
-        coinTitle = new MyLabel(500, Gdx.graphics.getHeight() - 80, "COIN");
-        coinValue = new MyLabel(570, Gdx.graphics.getHeight() - 80, player.getCoin());
+        hpTitle = new MyLabel("HP", 20, Gdx.graphics.getHeight() - 50);
+        hpValue = new MyLabel(player.getHp(), 60, Gdx.graphics.getHeight() - 50);
+        mpTitle = new MyLabel("MP", 20, Gdx.graphics.getHeight() - 80);
+        mpValue = new MyLabel(player.getMp(), 60, Gdx.graphics.getHeight() - 80);
+        coinTitle = new MyLabel("COIN", 500, Gdx.graphics.getHeight() - 80);
+        coinValue = new MyLabel(player.getCoin(), 580, Gdx.graphics.getHeight() - 80);
         initLable();
     }
 
@@ -42,13 +42,13 @@ public class Labels extends Group{
         return coinValue;
     }
 
-    private void initLable(){
+    private void initLable() {
 
-        addActor(hpTitle.getLabel());
-        addActor(mpTitle.getLabel());
-        addActor(hpValue.getLabel());
-        addActor(mpValue.getLabel());
-        addActor(coinValue.getLabel());
-        addActor(coinTitle.getLabel());
+        addActor(hpTitle);
+        addActor(mpTitle);
+        addActor(hpValue);
+        addActor(mpValue);
+        addActor(coinValue);
+        addActor(coinTitle);
     }
 }

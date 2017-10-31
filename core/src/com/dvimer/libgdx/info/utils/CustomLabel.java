@@ -1,6 +1,7 @@
 package com.dvimer.libgdx.info.utils;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.dvimer.libgdx.info.runner.Runner;
 
 /**
  * Created by dvime_000 on 09.10.2017.
@@ -8,9 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 public class CustomLabel extends Label {
     private String text;
 
-    public CustomLabel(final CharSequence text, final LabelStyle style) {
-        super(text, style);
-        this.text = text.toString();
+    public CustomLabel(String text, int x, int y) {
+        super(text, Runner.gameSkin, "big");
+        setPosition(x, y);
     }
 
     @Override

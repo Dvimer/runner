@@ -21,7 +21,7 @@ public class Monster extends GameObject {
     private int attack;
 
     public Monster(int x, int y, Player player, String name) {
-        super(new TextureRegion(new Texture(Gdx.files.internal("greenMonster.png"))),x,y);
+        super(new TextureRegion(new Texture(Gdx.files.internal("greenMonster.png"))), x, y);
         this.player = player;
         this.hp = 100;
         this.attack = 5;
@@ -42,15 +42,20 @@ public class Monster extends GameObject {
 
     public void getDamage(int damage) {
         hp -= damage;
-        MyLabel label = new MyLabel(0, 500, "-" + damage);
+        MyLabel label = new MyLabel("-" + damage, 0, 500);
 
-        getStage().addActor(label.getLabel());
+        getStage().addActor(label);
 //        for (Actor actor : getStage().getActors()) {
 //            if (actor.getName() != null && actor.getName().equals("damage")) {
-        label.getLabel().setPosition(getX() + getWidth(), getY() + getHeight());
 
-        label.getLabel().addAction(Actions.moveTo(getX() + getWidth() + 50, getY() + getHeight() - 300, 2f));
+        label.setPosition(getX() + getWidth(), getY() + getHeight());
 
+        SequenceAction sequenceAction = new SequenceAction();
+        sequenceAction.addAction(Actions.moveTo(getX() + getWidth() + 50, getY() + getHeight() - 100, 1f));
+        sequenceAction.addAction(Actions.removeActor());
+
+        label.addAction(sequenceAction);
+//        System.out.println();
 
 //            }
 //        }

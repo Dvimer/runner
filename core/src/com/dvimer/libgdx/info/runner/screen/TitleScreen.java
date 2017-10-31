@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.dvimer.libgdx.info.runner.Runner;
+import com.dvimer.libgdx.info.runner.factory.MyLabel;
 
 public class TitleScreen implements Screen {
 
@@ -23,9 +24,7 @@ public class TitleScreen implements Screen {
 
         stage.addActor(game.background);
 
-        Label title = new Label("Game menu", Runner.gameSkin, "big");
-        title.setAlignment(Align.center);
-        title.setY(Gdx.graphics.getHeight() * 2 / 3);
+        Label title = new MyLabel("Game menu", Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() * 2 / 3);
         title.setWidth(Gdx.graphics.getWidth());
         stage.addActor(title);
 

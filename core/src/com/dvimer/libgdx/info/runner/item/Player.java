@@ -23,12 +23,12 @@ public class Player extends GameObject {
     private int maxMp;
 
     public Player(int x, int y) {
-        super(new TextureRegion(new Texture(Gdx.files.internal("player.png"))),x,y);
+        super(new TextureRegion(new Texture(Gdx.files.internal("player.png"))), x, y);
         this.hp = 200;
         this.maxHp = hp;
         this.mp = 100;
         this.maxMp = (int) mp;
-        this.attack = 20 + random.nextInt(10);
+        this.attack = 20;
         this.coin = 0;
         this.events = new EventManager("hp", "coin", "mp");
     }
@@ -39,8 +39,6 @@ public class Player extends GameObject {
         super.act(delta);
         regenMaxMana(delta);
     }
-
-
 
     public void regenMaxMana(float delta) {
         if (mp < maxMp) {
@@ -85,7 +83,7 @@ public class Player extends GameObject {
     }
 
     public int getAttack() {
-        return attack;
+        return attack + random.nextInt(10);
     }
 
     public int getMp() {
